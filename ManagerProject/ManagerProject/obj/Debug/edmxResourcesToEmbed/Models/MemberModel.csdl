@@ -29,9 +29,9 @@
       <PropertyRef Name="IDMovie" />
     </Key>
     <Property Name="IDMovie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NameMovie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Ticket" Type="Int32" />
+    <Property Name="NameMovie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ticket" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="history">
     <Key>

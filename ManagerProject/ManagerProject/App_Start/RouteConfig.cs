@@ -16,8 +16,13 @@ namespace ManagerProject
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Member", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+               name: "Admin",
+               url: "admin/{controller}/{action}/{id}",
+               defaults: new { controller = "Member", action = "Index", id = UrlParameter.Optional }
+           );
         }
     }
 }

@@ -13,9 +13,9 @@
       <PropertyRef Name="IDMovie" />
     </Key>
     <Property Name="IDMovie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NameMovie" Type="nvarchar" MaxLength="50" />
-    <Property Name="Director" Type="nvarchar" MaxLength="50" />
-    <Property Name="Ticket" Type="int" />
+    <Property Name="NameMovie" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Director" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ticket" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="history">
     <Key>

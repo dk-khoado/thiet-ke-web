@@ -17,6 +17,6 @@ namespace ManagerProject.Models
         public int IDMovie { get; set; }
         public string NameMovie { get; set; }
         public string Director { get; set; }
-        public Nullable<int> Ticket { get; set; }
+        public int Ticket { get; set; }
     }
 }
