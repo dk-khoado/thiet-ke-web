@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ManagerProject.Models.Member>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",new { } ,new {@class="btn btn-primary"})
+</p>
+<table class="table table-hover table-bordered">
+    
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Money)
+            </th>
+            <th  class="text-center">
+                Chức năng
+            </th>
+        </tr>
+
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Password)
+        </td> 
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Money)
+        </td>
+        <td class="text-center">
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID },new {@class="btn btn-info"} )
+            @Html.ActionLink("Details", "Details", new { id = item.ID }, new {@class ="btn btn-secondary"} )
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new {@class ="btn btn-danger"} )
+        </td>
+    </tr>
+}
+
+</table>
