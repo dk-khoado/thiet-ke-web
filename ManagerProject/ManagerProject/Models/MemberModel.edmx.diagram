@@ -6,6 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="0b1b42d0bafc47fb9045685b94423f5c" Name="Diagram1">
         <EntityTypeShape EntityType="ManageNetModel.Member" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageNetModel.Administrator" Width="1.5" PointX="3.875" PointY="1" />
+        <EntityTypeShape EntityType="ManageNetModel.Cinema" Width="1.5" PointX="1.75" PointY="3.625" />
+        <EntityTypeShape EntityType="ManageNetModel.history" Width="1.5" PointX="4.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

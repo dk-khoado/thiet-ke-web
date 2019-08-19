@@ -163,13 +163,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Administrator.cs">
-      <DependentUpon>AdminModel.tt</DependentUpon>
+      <DependentUpon>MemberModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -185,6 +185,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AdminModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cinema.cs">
+      <DependentUpon>MemberModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\history.cs">
+      <DependentUpon>MemberModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Member.cs">
       <DependentUpon>MemberModel.tt</DependentUpon>
@@ -204,9 +210,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MemberModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Menber_v.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\cinime.mdf" />
+    <Content Include="App_Data\cinime_log.ldf">
+      <DependentUpon>cinime.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -291,18 +302,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Index\Create.cshtml" />
-    <Content Include="Views\Index\Delete.cshtml" />
-    <Content Include="Views\Index\Details.cshtml" />
-    <Content Include="Views\Index\Edit.cshtml" />
-    <Content Include="Views\Index\Index.cshtml" />
-    <Content Include="Views\Index\Login.cshtml" />
-    <Content Include="Views\Index\LoginAdmin.cshtml" />
+    <Content Include="Views\Member\Create.cshtml" />
+    <Content Include="Views\Member\Delete.cshtml" />
+    <Content Include="Views\Member\Details.cshtml" />
+    <Content Include="Views\Member\Edit.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\Login.cshtml" />
+    <Content Include="Views\Member\LoginAdmin.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>

@@ -12,5 +12,36 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Administrators">
+      <EntityTypeMapping TypeName="ManageNetModel.Administrator">
+        <MappingFragment StoreEntitySet="Administrators">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cinemas">
+      <EntityTypeMapping TypeName="ManageNetModel.Cinema">
+        <MappingFragment StoreEntitySet="Cinema">
+          <ScalarProperty Name="Ticket" ColumnName="Ticket" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+          <ScalarProperty Name="NameMovie" ColumnName="NameMovie" />
+          <ScalarProperty Name="IDMovie" ColumnName="IDMovie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="histories">
+      <EntityTypeMapping TypeName="ManageNetModel.history">
+        <MappingFragment StoreEntitySet="history">
+          <ScalarProperty Name="prices" ColumnName="prices" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="date_buy" ColumnName="date_buy" />
+          <ScalarProperty Name="id_movie" ColumnName="id_movie" />
+          <ScalarProperty Name="id_member" ColumnName="id_member" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

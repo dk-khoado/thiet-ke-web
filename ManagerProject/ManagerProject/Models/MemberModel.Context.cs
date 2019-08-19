@@ -26,5 +26,8 @@ namespace ManagerProject.Models
         }
     
         public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
+        public virtual DbSet<Cinema> Cinemas { get; set; }
+        public virtual DbSet<history> histories { get; set; }
     }
 }

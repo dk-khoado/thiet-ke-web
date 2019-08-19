@@ -6,11 +6,42 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Money" Type="Int32" />
   </EntityType>
   <EntityContainer Name="MemberEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="Administrators" EntityType="ManageNetModel.Administrator" />
+    <EntitySet Name="Cinemas" EntityType="ManageNetModel.Cinema" />
+    <EntitySet Name="histories" EntityType="ManageNetModel.history" />
   </EntityContainer>
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cinema">
+    <Key>
+      <PropertyRef Name="IDMovie" />
+    </Key>
+    <Property Name="IDMovie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameMovie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ticket" Type="Int32" />
+  </EntityType>
+  <EntityType Name="history">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_member" Type="Int32" Nullable="false" />
+    <Property Name="id_movie" Type="Int32" Nullable="false" />
+    <Property Name="date_buy" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="amount" Type="Int32" Nullable="false" />
+    <Property Name="prices" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

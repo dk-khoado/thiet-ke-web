@@ -1,16 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ManageNetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Member">
+  <EntityType Name="Administrators">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="nvarchar" MaxLength="50" />
     <Property Name="Password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Cinema">
+    <Key>
+      <PropertyRef Name="IDMovie" />
+    </Key>
+    <Property Name="IDMovie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameMovie" Type="nvarchar" MaxLength="50" />
+    <Property Name="Director" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ticket" Type="int" />
+  </EntityType>
+  <EntityType Name="history">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_member" Type="int" Nullable="false" />
+    <Property Name="id_movie" Type="int" Nullable="false" />
+    <Property Name="date_buy" Type="date" Nullable="false" />
+    <Property Name="amount" Type="int" Nullable="false" />
+    <Property Name="prices" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar(max)" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="Money" Type="int" />
   </EntityType>
   <EntityContainer Name="ManageNetModelStoreContainer">
+    <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cinema" EntityType="Self.Cinema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
