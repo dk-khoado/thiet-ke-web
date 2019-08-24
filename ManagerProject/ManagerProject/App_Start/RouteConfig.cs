@@ -19,10 +19,10 @@ namespace ManagerProject
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
-               name: "Admin",
-               url: "admin/{controller}/{action}/{id}",
-               defaults: new { controller = "Member", action = "Index", id = UrlParameter.Optional }
-           );
+              name: "admin",
+              url: "admin/{controller}/{action}/{id}",
+              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+          );
         }
     }
 }

@@ -14,9 +14,20 @@ namespace ManagerProject.Models
     
     public partial class Cinema
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cinema()
+        {
+            this.histories = new HashSet<history>();
+        }
+    
         public int IDMovie { get; set; }
         public string NameMovie { get; set; }
         public string Director { get; set; }
-        public int Ticket { get; set; }
+        public Nullable<int> Ticket { get; set; }
+        public bool isDelete { get; set; }
+        public string Image { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<history> histories { get; set; }
     }
 }

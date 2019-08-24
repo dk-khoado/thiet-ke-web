@@ -170,55 +170,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Administrator.cs">
-      <DependentUpon>MemberModel.tt</DependentUpon>
+      <DependentUpon>ManagerCinima.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdminModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AdminModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AdminModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AdminModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AdminModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AdminModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\BuyMovie.cs" />
     <Compile Include="Models\Cinema.cs">
-      <DependentUpon>MemberModel.tt</DependentUpon>
+      <DependentUpon>ManagerCinima.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\history.cs">
-      <DependentUpon>MemberModel.tt</DependentUpon>
+      <DependentUpon>ManagerCinima.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManagerCinima.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManagerCinima.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManagerCinima.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManagerCinima.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManagerCinima.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManagerCinima.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Member.cs">
-      <DependentUpon>MemberModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MemberModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MemberModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MemberModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MemberModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MemberModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MemberModel.edmx</DependentUpon>
+      <DependentUpon>ManagerCinima.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Menber_v.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\cinime.mdf" />
-    <Content Include="App_Data\cinime_log.ldf">
-      <DependentUpon>cinime.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -228,25 +210,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\AdminModel.Context.tt">
+    <Content Include="Models\ManagerCinima.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AdminModel.edmx</DependentUpon>
-      <LastGenOutput>AdminModel.Context.cs</LastGenOutput>
+      <DependentUpon>ManagerCinima.edmx</DependentUpon>
+      <LastGenOutput>ManagerCinima.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\AdminModel.tt">
+    <Content Include="Models\ManagerCinima.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AdminModel.edmx</DependentUpon>
-      <LastGenOutput>AdminModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\MemberModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MemberModel.Context.cs</LastGenOutput>
-      <DependentUpon>MemberModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\MemberModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MemberModel.edmx</DependentUpon>
-      <LastGenOutput>MemberModel.cs</LastGenOutput>
+      <DependentUpon>ManagerCinima.edmx</DependentUpon>
+      <LastGenOutput>ManagerCinima.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -269,20 +241,14 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\MemberModel.edmx">
+    <EntityDeploy Include="Models\ManagerCinima.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MemberModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ManagerCinima.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\MemberModel.edmx.diagram">
-      <DependentUpon>MemberModel.edmx</DependentUpon>
+    <Content Include="Models\ManagerCinima.edmx.diagram">
+      <DependentUpon>ManagerCinima.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\AdminModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AdminModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\AdminModel.edmx.diagram">
-      <DependentUpon>AdminModel.edmx</DependentUpon>
-    </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -313,8 +279,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Create.cshtml" />
+    <Content Include="Views\Movie\Delete.cshtml" />
+    <Content Include="Views\Movie\Edit.cshtml" />
+    <Content Include="Views\Home\Buy.cshtml" />
+    <Content Include="Views\Shared\_Layoutv2.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\History.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>

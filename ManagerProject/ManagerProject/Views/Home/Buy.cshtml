@@ -1,0 +1,51 @@
+﻿@model ManagerProject.Models.Cinema
+@{
+    Layout = "~/Views/Shared/_Layoutv2.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Đặt Vé</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDMovie)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NameMovie, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="NameMovie" value="@Model.NameMovie" readonly class="form-control"/>                            
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Director, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="Director" value="@Model.Director" readonly class="form-control" />               
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ticket, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="Ticket" value="@Model.Ticket" readonly class="form-control" />                           
+            </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-md-2" for="amount">Số lượng</label>
+            <div class="col-md-10">
+              <input type="number" class="form-control" name="amount" id="amount" min="1" max="5" value="1"/>
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đặt Vé" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

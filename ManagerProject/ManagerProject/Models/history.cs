@@ -20,5 +20,7 @@ namespace ManagerProject.Models
         public System.DateTime date_buy { get; set; }
         public int amount { get; set; }
         public int prices { get; set; }
+    
+        public virtual Cinema Cinema1 { get; set; }
     }
 }

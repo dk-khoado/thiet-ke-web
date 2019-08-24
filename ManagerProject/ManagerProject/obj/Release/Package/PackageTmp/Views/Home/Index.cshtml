@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ManagerProject.Models.Cinema>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+           Tên Phim
+        </th>
+        <th>
+           Đạo điễn
+        </th>
+        <th>
+            Giá
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameMovie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ticket)
+        </td>
+        <td>                  
+            @Html.ActionLink("Buy", "Buy", new { id=item.IDMovie })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,29 @@
+﻿
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/overlayout.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">      
+        @Html.ActionLink("Quản Lý Rạp Phim Mini", "Index", "Home", null, new { @class = "p-2 text-dark" })       
+        @*<a class="btn btn-outline-primary" href="#">Sign up</a>*@
+    </div>
+    <div class="container">
+
+        @RenderBody()
+        <hr />
+        @{ Html.RenderPartial("_Footer");}
+    </div>
+
+
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</html>

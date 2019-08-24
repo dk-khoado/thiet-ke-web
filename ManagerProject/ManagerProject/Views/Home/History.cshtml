@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layoutv2.cshtml";
+}
+@model IEnumerable<ManagerProject.Models.history>
+<h1>Lịch sử giao dịch</h1>
+<ul class="list-group">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item">
+            <h6>Tên Phim: @item.Cinema1.NameMovie</h6>
+            <p>Đạo diễn: @item.Cinema1.Director</p>
+            <p>Số lượng: @item.amount</p>
+            <p>Tổng: @item.prices</p>
+            <p>Ngày mua: @item.date_buy</p>
+        </li>
+
+    }
+</ul>

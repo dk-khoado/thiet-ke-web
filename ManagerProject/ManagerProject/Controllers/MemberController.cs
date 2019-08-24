@@ -12,29 +12,17 @@ using ManagerProject.Models;
 
 namespace ManagerProject.Controllers
 {
+   [Route("admin")]
     public class MemberController : Controller
     {
-        private MemberEntities db = new MemberEntities();
-        private AdminEntities dbadmin = new AdminEntities();
+        private ManageNetEntities1 db = new ManageNetEntities1();
 
-        // GET: Index
+        // GET: Index             
         public ActionResult Index()
         {
-            return View(db.Members.ToList());
-        }
-        public string Mahoa(string input )
-        {
-            MD5 md5 = MD5.Create();
-            byte[] inputbytes = System.Text.Encoding.ASCII.GetBytes(input);
-            byte[] hash = md5.ComputeHash(inputbytes);
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0;i < hash.Length; i++)
-            {
-                sb.Append(hash[i].ToString("X2"));
-            }
-            return sb.ToString();
-        }
-
+            return View(db.Members.ToList());            
+        }       
+       
         // GET: Index/Details/5
         public ActionResult Details(int? id)
         {
@@ -49,48 +37,7 @@ namespace ManagerProject.Controllers
             }
             return View(member);
         }
-
-        // GET: Index/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Index/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Username,Password,ConfirmPassword,Email,Money")]Menber_v member)
-        {            
-            if (ModelState.IsValid)
-            {
-                if (db.Members.Count(e => e.Username == member.Username) > 0)
-                {
-                    ViewBag.DuplicateMessage = "Tài khoản đã được sử dụng";
-                }
-                else if (db.Members.Count(e => e.Email == member.Email) > 0)
-                {
-                    ViewBag.EmailMessage = "Email đã được sử dụng";
-                }
-                else if (member.Password != member.ConfirmPassword)
-                {
-                    ViewBag.DuplicateMessage = "Mật khẩu không khớp";
-                }
-                else
-                {
-                    Member member1 = new Member();
-                    member1.Email = member.Email;
-                    member1.Username = member.Username;
-                    member1.Password = Mahoa(member.Password);
-                    member1.Money = 10000;
-                    db.Members.Add(member1);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-            return View(member);
-        }
+                
 
         // GET: Index/Edit/5
         public ActionResult Edit(int? id)
@@ -112,6 +59,7 @@ namespace ManagerProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+      
         public ActionResult Edit(Member member)
         {
             if (ModelState.IsValid)
@@ -156,26 +104,7 @@ namespace ManagerProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(Member member)
-        {
-            if ((db.Members.Count(e => e.Username == member.Username) > 0) && (db.Members.Count(e => e.Password == member.Password) > 0))
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.AccountMessage = "Tài khoản hoặc mật khẩu sai";
-
-            }
-            return View();
-        }
+        }       
         //GET
         public ActionResult LoginAdmin()
         {
@@ -188,15 +117,15 @@ namespace ManagerProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (dbadmin.Administrators.Count(e => e.Username != admin.Username) >0)
+                if (db.Administrators.Count(e => e.Username != admin.Username) >0)
                 {
                     ViewBag.AccountMessage = "Tài khoản không tồn tại.";
                 }
-                else if ((dbadmin.Administrators.Count(e => e.Username == admin.Username) >0) && (dbadmin.Administrators.Count(e => e.Password != admin.Password) >0))
+                else if ((db.Administrators.Count(e => e.Username == admin.Username) >0) && (db.Administrators.Count(e => e.Password != admin.Password) >0))
                 {
                     ViewBag.AccountMessage = "Mật khẩu sai, vui lòng nhập lại.";
                 }
-                else if ((dbadmin.Administrators.Count(e => e.Username == admin.Username) > 0) && (dbadmin.Administrators.Count(e => e.Password == admin.Password) > 0))
+                else if ((db.Administrators.Count(e => e.Username == admin.Username) > 0) && (db.Administrators.Count(e => e.Password == admin.Password) > 0))
                 {
                     RedirectToAction("Index");
                 }

@@ -1,35 +1,25 @@
 ﻿@model IEnumerable<ManagerProject.Models.Cinema>
-
-
-<table class="table table-bordered">
-    <tr>
-        <th>
-           Tên Phim
-        </th>
-        <th>
-           Đạo điễn
-        </th>
-        <th>
-            Giá
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NameMovie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Director)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ticket)
-        </td>
-        <td>                  
-            @Html.ActionLink("Buy", "Buy", new { id=item.IDMovie })
-        </td>
-    </tr>
+@{
+    Layout = "~/Views/Shared/_Layoutv2.cshtml";
 }
+<div class="row">
+    <div class="col-12 col-md-6">
+        @foreach (var item in Model)
+        {
+            if (item.isDelete == false)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" width="286" height="180"  src="@item.Image" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.NameMovie</h5>
+                        <p class="card-text">@item.Director</p>
+                        @Html.ActionLink("Đặt Vé","Buy",new {id= item.IDMovie},new {@class="btn btn-primary"})
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
 
-</table>
+
+
