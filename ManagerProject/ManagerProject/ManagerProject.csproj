@@ -210,6 +210,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Image\avengers-4-end-game-2-cuong-phim-1024x512.jpg" />
+    <Content Include="Image\H2x1_NSwitchDS_ArenaOfValor_image1600w.jpg" />
+    <Content Include="Image\thumb-1920-1003220.png" />
     <Content Include="Models\ManagerCinima.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ManagerCinima.edmx</DependentUpon>
