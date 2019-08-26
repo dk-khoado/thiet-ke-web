@@ -10,13 +10,23 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        @Html.ActionLink("Quản Lý Rạp Phim Mini", "Index", "Home", null, new { @class = "my-0 mr-md-auto font-weight-normal" })
-        <nav class="my-2 my-md-0 mr-md-3">
-
-        </nav>
-        @Html.ActionLink("Danh sách phim", "Index", "Movie", null, new { @class = "p-2 text-dark" })
-        @Html.ActionLink("Thành Viên", "Index", "Member", null, new { @class = "p-2 text-dark" })        
+    <div class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+            @Html.ActionLink("Quản Lý Rạp Phim Mini", "Index", "Home", null, new { @class = "nar-link" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Danh sách phim", "Index", "Movie", null, new { @class = "btn btn-outline-primary mr-3" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Thành Viên", "Index", "Member", null, new { @class = "btn btn-outline-primary" })
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="container">
 

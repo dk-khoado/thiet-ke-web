@@ -6,11 +6,14 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/overlayout.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    @*<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         @Html.ActionLink("Rạp Phim Mini", "Index", "Home", null, new { @class = "my-0 mr-md-auto font-weight-normal" })
         <nav class="my-2 my-md-0 mr-md-3">
             @{
@@ -28,9 +31,44 @@
             }
 
         </nav>
-    </div>
-    <div class="container">
+    </div>*@
 
+    <div class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+            @Html.ActionLink("Quản Lý Rạp Phim Mini", "Index", "Home", null, new { @class = "nav-link" })
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto  ">
+
+                    @{
+                        if (Session["id_member"] == null)
+                        {
+                            
+                            <li class="nav-item">
+                                @Html.ActionLink("Đăng Nhập", "Login", "Home", null, new { @class = "btn btn-outline-primary mr-3" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Đăng Ký", "Register", "Home", null, new { @class = "btn btn-outline-primary mr-3" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Về Chúng Tôi", "", "Home", null, new { @class = "btn btn-outline-primary" })
+                            </li>
+                        }
+                        else
+                        {
+                            <a class="p-2 text-info" href="@Url.Action("History")">Lịch Sử</a>
+                            <a class="p-2 text-info">Xin Chào @Session["name_member"]</a>
+                            <a class="p-2 text-info" href="@Url.Action("Logout")">Đăng Xuất</a>
+                        }
+                    }
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    <br />
+    <br />
+   
         @RenderBody()
         <hr />
         @{ Html.RenderPartial("_Footer");}
