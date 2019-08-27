@@ -17,6 +17,8 @@
     <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Ticket" Type="Int32" />
     <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="histories" Relationship="ManageNetModel.FK_history_movie1" FromRole="Cinema" ToRole="history" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="history">
     <Key>
@@ -25,9 +27,10 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_member" Type="Int32" Nullable="false" />
     <Property Name="id_movie" Type="Int32" Nullable="false" />
-    <Property Name="date_buy" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="date_buy" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="amount" Type="Int32" Nullable="false" />
     <Property Name="prices" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cinema1" Relationship="ManageNetModel.FK_history_movie1" FromRole="history" ToRole="Cinema" />
   </EntityType>
   <EntityType Name="Member">
     <Key>
@@ -44,5 +47,21 @@
     <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
     <EntitySet Name="histories" EntityType="Self.history" />
     <EntitySet Name="Members" EntityType="Self.Member" />
+    <AssociationSet Name="FK_history_movie1" Association="ManageNetModel.FK_history_movie1">
+      <End Role="Cinema" EntitySet="Cinemas" />
+      <End Role="history" EntitySet="histories" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_history_movie1">
+    <End Type="ManageNetModel.Cinema" Role="Cinema" Multiplicity="1" />
+    <End Type="ManageNetModel.history" Role="history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinema">
+        <PropertyRef Name="IDMovie" />
+      </Principal>
+      <Dependent Role="history">
+        <PropertyRef Name="id_movie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

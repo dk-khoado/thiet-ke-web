@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layoutv2.cshtml";
+}
+@model ManagerProject.Models.Menber_v
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="wrapper fadeInDown">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div id="formContent">
+
+            @Html.TextBoxFor(model => model.Username, new { @class = "fadeIn first", @placeholder = "Tài khoản", @type = "text" })<br />
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })<br />
+
+            @Html.TextBoxFor(model => model.Email, new { @class = "fadeIn second", @placeholder = "Email", @type = "text" })<br />
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })<br />
+
+            @Html.TextBoxFor(model => model.Password, new { @class = "fadeIn third", @placeholder = "Mật khẩu", @type = "password" })<br />
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })<br />
+            @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "fadeIn third", @placeholder = "Xác nhận mật khẩu", @type = "password" })<br />
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })<br />
+
+            <label class="label-danger">@ViewBag.EmailMessage</label>
+            <label class="label-danger">@ViewBag.DuplicateMessage</label>
+            <label class="label-success">@ViewBag.SuccessMessage</label>
+            <div id="box2">
+                <input type="submit" class="fadeIn fourth" value="Đăng ký">
+                <a href="@Url.Action("Index","Home")">
+                    <input type="button" class="btn btn-primary fadeIn fourth" value="Trở lại">
+                </a>
+            </div>
+
+            <!-- Forgot Passowrd -->
+            <div id="formFooter">
+                @*<a class="underlineHover" href="#">Quên mật khẩu?</a>*@
+            </div>
+
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

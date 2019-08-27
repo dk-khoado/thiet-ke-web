@@ -169,6 +169,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\admin.cs" />
     <Compile Include="Models\Administrator.cs">
       <DependentUpon>ManagerCinima.tt</DependentUpon>
     </Compile>
@@ -197,11 +198,14 @@
     <Compile Include="Models\Member.cs">
       <DependentUpon>ManagerCinima.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MenberChangePassword.cs" />
     <Compile Include="Models\Menber_v.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\admin_config.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\all.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -289,10 +293,12 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\MailTemplate.html" />
+    <Content Include="Views\Home\ForgotPasswrod.cshtml" />
+    <Content Include="Views\Home\ChangePasswrod.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>

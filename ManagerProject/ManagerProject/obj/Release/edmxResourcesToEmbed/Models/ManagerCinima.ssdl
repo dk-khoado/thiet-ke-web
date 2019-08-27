@@ -17,6 +17,7 @@
     <Property Name="Director" Type="nvarchar" MaxLength="50" />
     <Property Name="Ticket" Type="int" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="history">
     <Key>
@@ -25,7 +26,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_member" Type="int" Nullable="false" />
     <Property Name="id_movie" Type="int" Nullable="false" />
-    <Property Name="date_buy" Type="date" Nullable="false" />
+    <Property Name="date_buy" Type="datetime" Nullable="false" />
     <Property Name="amount" Type="int" Nullable="false" />
     <Property Name="prices" Type="int" Nullable="false" />
   </EntityType>
@@ -39,10 +40,26 @@
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="Money" Type="int" />
   </EntityType>
+  <Association Name="FK_history_movie">
+    <End Role="Cinema" Type="Self.Cinema" Multiplicity="1" />
+    <End Role="history" Type="Self.history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinema">
+        <PropertyRef Name="IDMovie" />
+      </Principal>
+      <Dependent Role="history">
+        <PropertyRef Name="id_movie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ManageNetModelStoreContainer">
     <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cinema" EntityType="Self.Cinema" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_history_movie" Association="Self.FK_history_movie">
+      <End Role="Cinema" EntitySet="Cinema" />
+      <End Role="history" EntitySet="history" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

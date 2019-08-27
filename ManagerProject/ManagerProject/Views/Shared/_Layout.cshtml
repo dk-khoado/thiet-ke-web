@@ -6,11 +6,14 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/overlayout.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    @Styles.Render("~/Content/css")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous">
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
             @Html.ActionLink("Quản Lý Rạp Phim Mini", "Index", "Home", null, new { @class = "nar-link" })
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,12 +27,29 @@
                     <li class="nav-item">
                         @Html.ActionLink("Thành Viên", "Index", "Member", null, new { @class = "btn btn-outline-primary" })
                     </li>
+                    @if (Session["admin"] != null)
+                    {
+                <li class="nav-item">
+                    <p class="p-2 text-info">Xin Chào @Session["admin"]</p>
+                    
+                </li>
+                <li><a class="p-2 text-info" href="@Url.Action("Logout")"><span class="fa fa-sign-out-alt"></span></a></li>
+                    }
                 </ul>
             </div>
         </div>
     </div>
     <div class="container">
-
+        @if (Session["admin"] == null)
+        {
+        <script>
+            var link = "@Url.Action("LoginAdmin","Member")";
+            if (window.location.pathname != link)
+            {
+                window.location.href = "@Url.Action("LoginAdmin","Member")";
+            }
+        </script>
+        }
         @RenderBody()
         <hr />
         @{ Html.RenderPartial("_Footer");}

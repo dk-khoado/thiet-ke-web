@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -8,13 +12,13 @@ using System.Web.Mvc;
 using ManagerProject.Models;
 
 namespace ManagerProject.Controllers
-{ 
+{
     public class HomeController : Controller
     {
         ManageNetEntities1 db = new ManageNetEntities1();
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";            
+            ViewBag.Title = "Home Page";
             return View(db.Cinemas);
         }
         private string Mahoa(string input)
@@ -31,7 +35,7 @@ namespace ManagerProject.Controllers
         }
         public ActionResult Buy(int id)
         {
-            if (Session["id_member"] == null || Session["id_member"] ==default)
+            if (Session["id_member"] == null || Session["id_member"] == default)
             {
                 return RedirectToAction("Index");
             }
@@ -46,17 +50,15 @@ namespace ManagerProject.Controllers
             {
                 history _history = new history();
                 _history.amount = buyMovie.amount;
-                //history.id_member = int.Parse(Session["id_member"].ToString());
-                _history.id_member = 1;
+                _history.id_member = int.Parse(Session["id_member"].ToString());
                 _history.id_movie = buyMovie.IDMovie;
                 _history.prices = buyMovie.Ticket * buyMovie.amount;
-                _history.date_buy = DateTime.Now;                 
+                _history.date_buy = DateTime.Now;
                 db.histories.Add(_history);
                 db.SaveChanges();
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e);
             }
             return RedirectToAction("Index");
@@ -114,10 +116,11 @@ namespace ManagerProject.Controllers
         public ActionResult Login(Member member)
         {
             member.Password = Mahoa(member.Password);
-            if ((db.Members.Count(e => e.Username == member.Username) > 0) && (db.Members.Count(e => e.Password == member.Password) > 0))
+            if ((db.Members.Count(e => e.Username == member.Username && e.Password == member.Password) > 0))
             {
                 Session["id_member"] = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().ID;
                 Session["name_member"] = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().Username;
+                Session["money"] = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().Money;
                 return RedirectToAction("Index");
             }
             else
@@ -134,8 +137,117 @@ namespace ManagerProject.Controllers
                 return RedirectToAction("Index");
             }
             int id_member = 0;
-            int.TryParse(Session["id_member"].ToString(),out id_member);
-            return View(db.histories.Where(e=>e.id_member ==id_member));
+            int.TryParse(Session["id_member"].ToString(), out id_member);
+            return View(db.histories.Where(e => e.id_member == id_member));
+        }
+
+        public ActionResult ForgotPasswrod()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ForgotPasswrod(string email)
+        {
+            Member member = db.Members.Where(e => e.Email == email).FirstOrDefault();
+            if (member == null)
+            {
+                return View();
+            }
+            SendMail(email, member.Username);
+            return RedirectToAction("ChangePasswrod",new { email });
+        }
+        public ActionResult ChangePasswrod(string email)
+        {
+            MenberChangePassword menber = new MenberChangePassword();
+            menber.email = email;
+            return View(menber);
+        }
+        [HttpPost]
+        public ActionResult ChangePasswrod(string password, string email)
+        {
+            try
+            {
+                Member member = db.Members.Where(e => e.Email == email).FirstOrDefault();
+                member.Password = Mahoa(password);
+                db.Entry(member).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+        }
+        public ActionResult About()
+        {
+            return View();
+        }
+        //tao key đóa
+        private string CreateKey()
+        {
+            Random random = new Random();
+            do
+            {
+                StringBuilder key = new StringBuilder();
+                for (int i = 0; i < 6; i++)
+                {
+
+                    int number = random.Next(0, 2);
+                    switch (number)
+                    {
+                        case 0:
+                            key.Append(random.Next(0, 9));
+                            break;
+                        case 1:
+                            key.Append(Convert.ToChar(random.Next(65, 90)));
+                            break;
+                        case 2:
+                            key.Append(Convert.ToChar(random.Next(97, 122)));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                string key_ = key.ToString();
+                return key.ToString();
+
+            } while (true);
+        }
+        //gửi mail đóa
+        private void SendMail(string to, string name)
+        {
+            string code = CreateKey();
+            Session["code"] = code;
+            string htmlMail;
+            using (StreamReader reader = new StreamReader(HttpContext.Server.MapPath("~/Views/MailTemplate.html")))
+            {               
+                htmlMail = reader.ReadToEnd();
+                htmlMail = htmlMail.Replace("{name}", name);
+                htmlMail = htmlMail.Replace("{code}", code);
+            }
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.googlemail.com");
+
+                mail.From = new MailAddress("khoado29k11@viendong.edu.vn");
+                mail.To.Add(to);
+                mail.IsBodyHtml = true;
+                mail.Subject = "Quên mật khẩu";
+                mail.Body = htmlMail;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new NetworkCredential("khoado29k11@viendong.edu.vn", "khoa958632147");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
     }
 }

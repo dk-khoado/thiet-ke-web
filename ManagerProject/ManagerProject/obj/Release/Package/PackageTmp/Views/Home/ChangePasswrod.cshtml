@@ -1,0 +1,37 @@
+﻿@{
+    @model ManagerProject.Models.MenberChangePassword
+    Layout = "~/Views/Shared/_Layoutv2.cshtml";
+}
+<form method="post" onsubmit="return Check()">
+    <input class="form-control" id="code" placeholder="Code" name="code" type="text" required />
+    <input class="form-control" id="password" placeholder="Mật khẩu" name="password" type="password" required />
+    <input class="form-control" id="c_password" placeholder="Nhập Lại Mật khẩu" name="c_password" type="password" required />
+    <input class="form-control" value="@Model.email" name="email" type="text" required hidden />
+    <input class="form-control" value="Thay đổi" type="submit" />
+
+</form>
+@if (@Session["code"] == null)
+{
+    <script>
+        window.location.href = "@Url.Action("Index","Home")";
+    </script>
+}
+<script>
+
+    function Check() {
+        var code = document.getElementById("code").value;
+        var pass = document.getElementById("password").value;
+        var c_pass = document.getElementById("c_password").value;
+        if (code != "@Session["code"]") {
+            alert("Sai mã");
+            return false;
+        } else if (pass != c_pass) {
+            alert("Mật Khẩu nhập lại không đúng");
+            return false;
+        } else if(pass == c_pass){
+             alert("Mật Khẩu Đã được đổi");
+            return true;
+        }
+        return false;
+    }
+</script>

@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.IO;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
-using System.Text;
+using System.Xml.Serialization;
 using System.Web;
 using System.Web.Mvc;
 using ManagerProject.Models;
 
 namespace ManagerProject.Controllers
 {
-   [Route("admin")]
+    [Route("admin")]
     public class MemberController : Controller
     {
         private ManageNetEntities1 db = new ManageNetEntities1();
-
         // GET: Index             
         public ActionResult Index()
         {
-            return View(db.Members.ToList());            
-        }       
-       
+            return View(db.Members.ToList());
+        }
+
         // GET: Index/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,7 +36,7 @@ namespace ManagerProject.Controllers
             }
             return View(member);
         }
-                
+
 
         // GET: Index/Edit/5
         public ActionResult Edit(int? id)
@@ -59,7 +58,7 @@ namespace ManagerProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-      
+
         public ActionResult Edit(Member member)
         {
             if (ModelState.IsValid)
@@ -104,7 +103,7 @@ namespace ManagerProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }       
+        }
         //GET
         public ActionResult LoginAdmin()
         {
@@ -117,21 +116,33 @@ namespace ManagerProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (db.Administrators.Count(e => e.Username != admin.Username) >0)
+                admin _admin = new admin();
+                string path = HttpContext.Server.MapPath("~/App_Data/admin_config.xml");
+                XmlSerializer xml = new XmlSerializer(typeof(admin));
+                using (Stream reader = new FileStream(path, FileMode.Open))
+                {
+                    _admin = (admin)xml.Deserialize(reader);
+                }
+                if (_admin.username != admin.Username)
                 {
                     ViewBag.AccountMessage = "Tài khoản không tồn tại.";
                 }
-                else if ((db.Administrators.Count(e => e.Username == admin.Username) >0) && (db.Administrators.Count(e => e.Password != admin.Password) >0))
+                else if (_admin.password != admin.Password)
                 {
                     ViewBag.AccountMessage = "Mật khẩu sai, vui lòng nhập lại.";
                 }
-                else if ((db.Administrators.Count(e => e.Username == admin.Username) > 0) && (db.Administrators.Count(e => e.Password == admin.Password) > 0))
+                else if (_admin.password == admin.Password && _admin.username == admin.Username)
                 {
-                    RedirectToAction("Index");
+                    Session["admin"] = _admin.username;
+                    return RedirectToAction("Index");
                 }
             }
             return View(admin);
         }
-
+        public ActionResult Logout()
+        {
+            Session["admin"] = null;
+            return RedirectToAction("LoginAdmin");
+        }
     }
 }

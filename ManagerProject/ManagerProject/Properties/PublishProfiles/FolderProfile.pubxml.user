@@ -9,6 +9,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>D:\backup E\gitHub\web</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="App_Data/admin_config.xml">
+      <publishTime>08/27/2019 13:04:20</publishTime>
+    </File>
     <File Include="App_Data/cinime.mdf">
       <publishTime>08/21/2019 11:36:33</publishTime>
     </File>
@@ -91,10 +94,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2019 13:42:18</publishTime>
     </File>
     <File Include="bin/ManagerProject.dll">
-      <publishTime>08/22/2019 00:34:20</publishTime>
+      <publishTime>08/27/2019 17:35:07</publishTime>
     </File>
     <File Include="bin/ManagerProject.pdb">
-      <publishTime>08/22/2019 00:34:20</publishTime>
+      <publishTime>08/27/2019 17:35:07</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>08/19/2019 13:42:18</publishTime>
@@ -276,6 +279,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/WebGrease.dll">
       <publishTime>08/19/2019 13:42:19</publishTime>
     </File>
+    <File Include="Content/all.css">
+      <publishTime>08/26/2019 17:18:47</publishTime>
+    </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>08/19/2019 13:42:17</publishTime>
     </File>
@@ -301,7 +307,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2019 13:42:17</publishTime>
     </File>
     <File Include="Content/overlayout.css">
-      <publishTime>08/19/2019 13:42:17</publishTime>
+      <publishTime>08/22/2019 21:46:21</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>08/19/2019 13:42:17</publishTime>
@@ -327,6 +333,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Global.asax">
       <publishTime>08/19/2019 13:42:17</publishTime>
     </File>
+    <File Include="Image/avengers-4-end-game-2-cuong-phim-1024x512.jpg">
+      <publishTime>08/26/2019 16:09:01</publishTime>
+    </File>
+    <File Include="Image/H2x1_NSwitchDS_ArenaOfValor_image1600w.jpg">
+      <publishTime>08/26/2019 16:09:01</publishTime>
+    </File>
+    <File Include="Image/thumb-1920-1003220.png">
+      <publishTime>08/26/2019 16:09:01</publishTime>
+    </File>
     <File Include="Models/Administrator.cs">
       <publishTime>08/19/2019 14:06:59</publishTime>
     </File>
@@ -340,7 +355,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2019 14:30:02</publishTime>
     </File>
     <File Include="Models/ManagerCinima.edmx.diagram">
-      <publishTime>08/22/2019 00:29:21</publishTime>
+      <publishTime>08/23/2019 10:45:59</publishTime>
     </File>
     <File Include="Models/Member.cs">
       <publishTime>08/19/2019 14:10:31</publishTime>
@@ -393,14 +408,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/modernizr-2.8.3.js">
       <publishTime>08/19/2019 13:42:17</publishTime>
     </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>08/27/2019 17:34:12</publishTime>
+    </File>
     <File Include="Views/Home/Buy.cshtml">
-      <publishTime>08/21/2019 09:54:55</publishTime>
+      <publishTime>08/26/2019 18:03:26</publishTime>
+    </File>
+    <File Include="Views/Home/ChangePasswrod.cshtml">
+      <publishTime>08/27/2019 17:22:24</publishTime>
+    </File>
+    <File Include="Views/Home/ForgotPasswrod.cshtml">
+      <publishTime>08/27/2019 16:32:42</publishTime>
+    </File>
+    <File Include="Views/Home/History.cshtml">
+      <publishTime>08/23/2019 10:54:55</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>08/21/2019 10:34:43</publishTime>
+      <publishTime>08/26/2019 18:18:15</publishTime>
+    </File>
+    <File Include="Views/Home/Login.cshtml">
+      <publishTime>08/27/2019 16:45:57</publishTime>
+    </File>
+    <File Include="Views/Home/Register.cshtml">
+      <publishTime>08/23/2019 09:03:25</publishTime>
+    </File>
+    <File Include="Views/MailTemplate.html">
+      <publishTime>08/27/2019 15:19:51</publishTime>
     </File>
     <File Include="Views/Member/Create.cshtml">
-      <publishTime>08/19/2019 15:56:53</publishTime>
+      <publishTime>08/26/2019 16:09:02</publishTime>
     </File>
     <File Include="Views/Member/Delete.cshtml">
       <publishTime>08/19/2019 13:42:17</publishTime>
@@ -415,34 +451,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2019 13:42:17</publishTime>
     </File>
     <File Include="Views/Member/Login.cshtml">
-      <publishTime>08/19/2019 13:42:17</publishTime>
+      <publishTime>08/26/2019 16:09:02</publishTime>
     </File>
     <File Include="Views/Member/LoginAdmin.cshtml">
-      <publishTime>08/19/2019 13:42:17</publishTime>
+      <publishTime>08/27/2019 14:33:44</publishTime>
     </File>
     <File Include="Views/Movie/Create.cshtml">
-      <publishTime>08/19/2019 16:47:30</publishTime>
+      <publishTime>08/23/2019 11:18:20</publishTime>
     </File>
     <File Include="Views/Movie/Delete.cshtml">
       <publishTime>08/21/2019 09:23:49</publishTime>
     </File>
     <File Include="Views/Movie/Edit.cshtml">
-      <publishTime>08/21/2019 10:33:43</publishTime>
+      <publishTime>08/23/2019 11:34:52</publishTime>
     </File>
     <File Include="Views/Movie/Index.cshtml">
-      <publishTime>08/21/2019 09:34:14</publishTime>
+      <publishTime>08/26/2019 16:09:02</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>08/19/2019 13:42:17</publishTime>
     </File>
     <File Include="Views/Shared/_Footer.cshtml">
-      <publishTime>08/19/2019 13:42:17</publishTime>
+      <publishTime>08/26/2019 16:09:02</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/21/2019 10:33:58</publishTime>
+      <publishTime>08/27/2019 14:49:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layoutv2.cshtml">
-      <publishTime>08/21/2019 10:34:29</publishTime>
+      <publishTime>08/26/2019 18:23:50</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>08/19/2019 13:42:17</publishTime>

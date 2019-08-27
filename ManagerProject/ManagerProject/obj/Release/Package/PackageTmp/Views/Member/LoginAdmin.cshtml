@@ -1,11 +1,12 @@
-﻿@model ManagerProject.Models.Administrator
+﻿
+@model ManagerProject.Models.Administrator
 
 @{
-    ViewBag.Title = "LoginAdmin";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>LoginAdmin</h2>
+<h2>Login</h2>
 
 
 @using (Html.BeginForm())
@@ -26,11 +27,12 @@
             <label class="label-danger">@ViewBag.DuplicateMessage</label>
             <label class="label-primary">@ViewBag.AccountMessage</label>
             <div id="box2">
-                <input type="submit" class="fadeIn fourth" value="Sign In">
-                <a href="@Url.Action("Create","Index")"
-                   class="buttona fadeIn fourth">Back</a>
+                <input type="submit" class="fadeIn fourth" value="Đăng nhập">
+                @*<a href="@Url.Action("Home","Index")"
+                    class="buttona fadeIn fourth">Đăng ký</a>*@
+
             </div>
-            
+
             <!-- Forgot Passowrd -->
             <div id="formFooter">
                 @*<a class="underlineHover" href="#">Quên mật khẩu?</a>*@
@@ -39,6 +41,7 @@
         </div>
     </div>
 }
+
 
 
 @section Scripts {

@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Cinemas">
       <EntityTypeMapping TypeName="ManageNetModel.Cinema">
         <MappingFragment StoreEntitySet="Cinema">
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="IDMovie" ColumnName="IDMovie" />
           <ScalarProperty Name="NameMovie" ColumnName="NameMovie" />
