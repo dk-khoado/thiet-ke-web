@@ -24,6 +24,7 @@
         var c_pass = document.getElementById("c_password").value;
         if (code != "@Session["code"]") {
             alert("Sai mã");
+
             return false;
         } else if (pass != c_pass) {
             alert("Mật Khẩu nhập lại không đúng");

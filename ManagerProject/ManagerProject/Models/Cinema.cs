@@ -26,6 +26,7 @@ namespace ManagerProject.Models
         public Nullable<int> Ticket { get; set; }
         public bool isDelete { get; set; }
         public string Image { get; set; }
+        public string descript { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<history> histories { get; set; }

@@ -262,6 +262,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="VerifiedEmail.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -297,6 +298,8 @@
     <Content Include="Views\MailTemplate.html" />
     <Content Include="Views\Home\ForgotPasswrod.cshtml" />
     <Content Include="Views\Home\ChangePasswrod.cshtml" />
+    <Content Include="Views\Home\ActiveEmail.cshtml" />
+    <Content Include="Views\Home\VerifiedMail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

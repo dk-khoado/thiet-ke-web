@@ -19,5 +19,6 @@ namespace ManagerProject.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public Nullable<int> Money { get; set; }
+        public Nullable<bool> status { get; set; }
     }
 }

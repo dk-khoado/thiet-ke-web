@@ -18,6 +18,7 @@
     <Property Name="Ticket" Type="int" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
     <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="descript" Type="ntext" />
   </EntityType>
   <EntityType Name="history">
     <Key>
@@ -39,6 +40,7 @@
     <Property Name="Password" Type="nvarchar(max)" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="Money" Type="int" />
+    <Property Name="status" Type="bit" />
   </EntityType>
   <Association Name="FK_history_movie">
     <End Role="Cinema" Type="Self.Cinema" Multiplicity="1" />

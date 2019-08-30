@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Cinemas">
       <EntityTypeMapping TypeName="ManageNetModel.Cinema">
         <MappingFragment StoreEntitySet="Cinema">
+          <ScalarProperty Name="descript" ColumnName="descript" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="IDMovie" ColumnName="IDMovie" />
@@ -37,6 +38,7 @@
     <EntitySetMapping Name="Members">
       <EntityTypeMapping TypeName="ManageNetModel.Member">
         <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />

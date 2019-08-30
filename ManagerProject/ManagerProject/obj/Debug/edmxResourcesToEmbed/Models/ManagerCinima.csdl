@@ -19,6 +19,7 @@
     <Property Name="isDelete" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="histories" Relationship="ManageNetModel.FK_history_movie1" FromRole="Cinema" ToRole="history" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="descript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="history">
     <Key>
@@ -41,6 +42,7 @@
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Money" Type="Int32" />
+    <Property Name="status" Type="Boolean" />
   </EntityType>
   <EntityContainer Name="ManageNetEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Administrators" EntityType="Self.Administrator" />

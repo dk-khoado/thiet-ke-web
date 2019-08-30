@@ -23,6 +23,7 @@
           <Property Name="Ticket" Type="int" />
           <Property Name="isDelete" Type="bit" Nullable="false" />
           <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="descript" Type="ntext" />
         </EntityType>
         <EntityType Name="history">
           <Key>
@@ -44,6 +45,7 @@
           <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Money" Type="int" />
+          <Property Name="status" Type="bit" />
         </EntityType>
         <Association Name="FK_history_movie">
           <End Role="Cinema" Type="Self.Cinema" Multiplicity="1" />
@@ -90,6 +92,7 @@
           <Property Name="isDelete" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="histories" Relationship="ManageNetModel.FK_history_movie1" FromRole="Cinema" ToRole="history" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="descript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="history">
           <Key>
@@ -112,6 +115,7 @@
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Money" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
         </EntityType>
         <EntityContainer Name="ManageNetEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrators" EntityType="Self.Administrator" />
@@ -153,6 +157,7 @@
           <EntitySetMapping Name="Cinemas">
             <EntityTypeMapping TypeName="ManageNetModel.Cinema">
               <MappingFragment StoreEntitySet="Cinema">
+                <ScalarProperty Name="descript" ColumnName="descript" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="isDelete" ColumnName="isDelete" />
                 <ScalarProperty Name="IDMovie" ColumnName="IDMovie" />
@@ -177,6 +182,7 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="ManageNetModel.Member">
               <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

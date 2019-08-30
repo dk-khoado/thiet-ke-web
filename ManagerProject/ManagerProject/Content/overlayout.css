@@ -9,7 +9,6 @@
     text-decoration: none;
     font-weight: 400;
 }*/
-
 h2 {
     text-align: center;
     font-size: 16px;
@@ -32,6 +31,13 @@ h2 {
     width: 100%;
     min-height: 100%;
     padding: 20px;
+}
+.wrapper2 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 }
 
 #formContent {
@@ -74,7 +80,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset], .buttona {
+input[type=button], input[type=submit], input[type=reset],.buttona {
     background-color: #56baed;
     border: none;
     color: white;
@@ -108,7 +114,7 @@ input[type=button], input[type=submit], input[type=reset], .buttona {
         transform: scale(0.95);
     }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -129,14 +135,14 @@ input[type=text], input[type=password] {
     border-radius: 5px 5px 5px 5px;
 }
 
-    input[type=text]:focus, input[type=password]:focus {
+    input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
         background-color: #fff;
         border-bottom: 2px solid #5fbae9;
     }
 
-    input[type=text]:placeholder, input[type=password]:placeholder {
-        color: #cccccc;
-    }
+        input[type=text]:placeholder, input[type=password]:placeholder, input[type=email]:placeholder {
+            color: #cccccc;
+        }
 
 
 

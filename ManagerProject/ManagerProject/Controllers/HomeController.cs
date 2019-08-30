@@ -55,6 +55,10 @@ namespace ManagerProject.Controllers
                 _history.prices = buyMovie.Ticket * buyMovie.amount;
                 _history.date_buy = DateTime.Now;
                 db.histories.Add(_history);
+                Member member = db.Members.Find(_history.id_member);
+                member.Money -= _history.prices;
+                Session["money"] = member.Money;
+                db.Entry(member).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
             catch (Exception e)
@@ -96,9 +100,13 @@ namespace ManagerProject.Controllers
                     member1.Username = member.Username;
                     member1.Password = Mahoa(member.Password);
                     member1.Money = 10000;
+                    member1.status = false;
                     db.Members.Add(member1);
                     db.SaveChanges();
+                    var id = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().ID;
+                    IsVerified(member.Email,member.Username,id);
                     return RedirectToAction("Index");
+                    
                 }
             }
             return View(member);
@@ -114,7 +122,7 @@ namespace ManagerProject.Controllers
         }
         [HttpPost]
         public ActionResult Login(Member member)
-        {
+        { var IsVerified = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().status;
             member.Password = Mahoa(member.Password);
             if ((db.Members.Count(e => e.Username == member.Username && e.Password == member.Password) > 0))
             {
@@ -123,10 +131,13 @@ namespace ManagerProject.Controllers
                 Session["money"] = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().Money;
                 return RedirectToAction("Index");
             }
+            else if (IsVerified == false )
+            {
+                ViewBag.AccountMessage = "Tài khoản chưa được kích hoạt";
+            }
             else
             {
                 ViewBag.AccountMessage = "Tài khoản hoặc mật khẩu sai";
-
             }
             return View();
         }
@@ -163,7 +174,7 @@ namespace ManagerProject.Controllers
             return View(menber);
         }
         [HttpPost]
-        public ActionResult ChangePasswrod(string password, string email)
+        public ActionResult ChangePasswrod(string password, string email, int id)
         {
             try
             {
@@ -248,6 +259,46 @@ namespace ManagerProject.Controllers
             {
                 Debug.WriteLine(ex);
             }
+        }
+        //Xác nhận email 
+        private void IsVerified(string to, string name, int id )
+        {
+            string htmlMail;
+            using (StreamReader reader = new StreamReader(HttpContext.Server.MapPath("~/VerifiedEmail.html")))
+            {
+                htmlMail = reader.ReadToEnd();
+                htmlMail = htmlMail.Replace("{name}", name);
+                htmlMail = htmlMail.Replace("{link", Url.Action("VerifiedMail", "Home",new {id}, "http"));
+            }
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.googlemail.com");
+
+                mail.From = new MailAddress("khoado29k11@viendong.edu.vn");
+                mail.To.Add(to);
+                mail.IsBodyHtml = true;
+                mail.Subject = "Xác nhận email";
+                mail.Body = htmlMail;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new NetworkCredential("khoado29k11@viendong.edu.vn", "khoa958632147");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+        public ActionResult VerifiedMail(int id )
+        {
+            Member member = db.Members.Find(id);
+            member.status = true;
+            db.Entry(member).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return View();
         }
     }
 }

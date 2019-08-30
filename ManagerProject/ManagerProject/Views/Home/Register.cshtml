@@ -21,9 +21,9 @@
             @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "fadeIn third", @placeholder = "Xác nhận mật khẩu", @type = "password" })<br />
             @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })<br />
 
-            <label class="label-danger">@ViewBag.EmailMessage</label>
-            <label class="label-danger">@ViewBag.DuplicateMessage</label>
-            <label class="label-success">@ViewBag.SuccessMessage</label>
+            <label class="text-danger">@ViewBag.EmailMessage</label>
+            <label class="text-danger">@ViewBag.DuplicateMessage</label>
+            <label class="text-success">@ViewBag.SuccessMessage</label>
             <div id="box2">
                 <input type="submit" class="fadeIn fourth" value="Đăng ký">
                 <a href="@Url.Action("Index","Home")">
