@@ -1,0 +1,164 @@
+<style>
+    .center_img {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .bg-left {
+        background: rgb(112, 114, 230);
+        height: 100%;
+    }
+
+    #chat_content {
+        height: 80%;
+        width: 100%;
+        overflow: scroll;
+    }
+
+    .isMe {
+        text-align: right;
+        background-color: rgb(196, 222, 245);
+    }
+
+    .message_log {
+        text-align: center;
+        background-color: rgb(224, 225, 226);
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        margin-top: 5px;
+        padding: 7px;
+        border: 1px solid rgb(224, 224, 224);
+        border-radius: 10px;
+        background-color: aliceblue;
+    }
+</style>
+<script>
+    //checking login
+    if (!localStorage.getItem("code")) {
+        location.href = "/"
+    }
+</script>
+<div class="row h-100">
+    <div class="col-lg-2 bg-left">
+        <div class="center_img">
+            <img class="center_img" src="#" alt="avartar" width="100px" height="100px">
+            <div class="text-dark" id="name">Hello </div>
+            <button onclick="createRoom()">Join</button>
+            <button onclick="leave()">leave</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+    </div>
+    <div class="col-lg-10">
+        <div id="chat_content">
+            <ul id="list_chat">
+                <li class="message_log">Chào mừng đến với ứng dụng chat.........</li>
+            </ul>
+        </div>
+        <form action="javascript:void(0)" onsubmit="send()">
+            <div class="row">
+
+                <span class="col-10">
+                    <input style="display: inline-block;" type="text" id="message" class="form-control"
+                        autocomplete="off">
+                </span>
+                <span class="col-2">
+                    <button class="btn btn-primary" type="submit">Send</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- load data -->
+<script>
+    $("#name").text(localStorage.getItem('name'));
+    //logout
+    function logout(){
+        localStorage.clear();
+        location.href = "/"
+    }
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var roomID = null;
+    var socket = io();
+    var id = null;
+    //di chuyen thanh cuon
+    function moveBotton() {
+        var objDiv = document.getElementById("chat_content");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+    //mo ket noi
+    socket.on("connect", function (data) {
+        id = socket.id;
+    })
+
+    function message_log(message) {
+        let chat = "<li class='message_log'>" + message + "</li>";
+        $("#list_chat").append(chat)
+    }
+
+    function send() {
+        var message = $("#message");
+        if (message.val().trim() != "" && roomID != null) {
+            socket.emit("chat", {
+                message: message.val(),
+                roomID: roomID
+            });
+            message.val("");
+        } else {
+            message.val("");
+            message_log("Hãy nhấn bắt đầu để tìm 1 tml :))")
+            moveBotton();
+        }
+    }
+
+    function leave() {
+        socket.emit("leave", {
+            id: id,
+            roomID: roomID
+        });
+    }
+    //create room
+    function createRoom() {
+        socket.emit("create", {
+            id: socket.id
+        });
+    }
+    socket.on("created", function (data) {
+        if (data.roomID) {
+            console.log('room created');
+            roomID = data.roomID;
+            message_log("Đang tìm....")
+        } else {
+            roomID = null;
+        }
+        moveBotton();
+    })
+    socket.on("leave", function (data) {
+        roomID = null;
+        message_log("Cuộc trò chuyện kết thúc. vui lòng nhấn bắt đầu lại")
+        moveBotton();
+    })
+    socket.on("chat", function (data) {
+        if (data.id == socket.id) {
+            let chat = "<li class='isMe'>" + data.message + "</li>";
+            $("#list_chat").append(chat)
+        } else {
+            let chat = "<li>" + data.message + "</li>";
+            $("#list_chat").append(chat)
+        }
+        moveBotton();
+    })
+
+    //add listenner join room
+    socket.on('join', function (data) {
+        message_log("Đã tìm thấy 1 đứa mặt lồn!!");
+        moveBotton();
+    })
+</script>

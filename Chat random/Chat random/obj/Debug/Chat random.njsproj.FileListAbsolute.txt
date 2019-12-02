@@ -1,0 +1,3 @@
+D:\JavaScript\Chat random\Chat random\obj\Debug\Chat random.njsprojAssemblyReference.cache
+D:\JavaScript\Chat random\Chat random\obj\Debug\Chat random.njsproj.CoreCompileInputs.cache
+D:\JavaScript\Chat random\Chat random\bin\Microsoft.NodejsTools.WebRole.dll

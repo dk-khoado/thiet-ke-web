@@ -1,0 +1,88 @@
+<center>
+    <h1 class="text-dark mt-5">Register</h1>
+    <form class="w-50">
+        <div class="form-group">
+            <label for="name">Nick Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name..." onchange="">
+            <small id="validation_name" class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username...">
+            <small id="validation_username" class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your Email...">
+            <small id="validation_email" class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control"
+                placeholder="Enter your password..." aria-describedby="helpId">
+            <small id="validation_password" class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="c_password">Comfirm Password</label>
+            <input type="password" id="c_password" class="form-control" placeholder="Comfirm password..."
+                aria-describedby="helpId">
+            <small id="validation_c_password" class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender" id="gender">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
+        </div>
+
+        <input class="btn btn-primary" type="button" value="Register" onclick="send()">
+    </form>
+
+    <a href="/"><button class="btn btn-info">Login</button></a>
+</center>
+<script>
+    function send() {
+        var data = {};
+        data.name = $('#name').val();
+        data.username = $('#username').val();
+        data.email = $('#email').val();
+        data.gender = $('#gender').val();
+        data.password = $('#password').val();
+        data.c_password = $('#c_password').val();
+        console.log(data.name);
+        if (data.name == "") {
+            $('#validation_name').text("Name is null")
+        } else if (data.username == "") {
+            $('#validation_name').text("")
+            $('#validation_username').text("Username is null")
+        } else if (data.email == "") {
+            $('#validation_name').text("")
+            $('#validation_username').text("")
+            $('#validation_email').text("Email is null")
+        } else if (data.password != data.c_password) {
+            $('#validation_c_password').text("Password incorrect")
+        } else {
+            $.ajax({
+                url: "/api/register",
+                method: "post",
+                data: data,
+                success: function (result) {
+                    if (result.err) {
+                        if (result.username > 0) {
+                            $('#validation_username').text("Username already exist")
+                        } else if (result.email > 0) {
+                            $('#validation_email').text("Email already exist")
+
+                        } else {
+                            alert("Register Fail !")
+                        }
+                    } else {
+                        alert("Register Success !");
+                        location.href = "/";
+                    }
+                }
+            });
+        }
+    }
+</script>
