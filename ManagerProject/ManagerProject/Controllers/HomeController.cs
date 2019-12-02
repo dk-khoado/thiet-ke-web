@@ -105,11 +105,15 @@ namespace ManagerProject.Controllers
                     db.SaveChanges();
                     var id = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().ID;
                     IsVerified(member.Email,member.Username,id);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Message");
                     
                 }
             }
             return View(member);
+        }
+        public ActionResult Message()
+        {
+            return View();
         }
         public ActionResult Login()
         {
@@ -122,7 +126,13 @@ namespace ManagerProject.Controllers
         }
         [HttpPost]
         public ActionResult Login(Member member)
-        { var IsVerified = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().status;
+        {
+            var IsVerified = db.Members.Where(e => e.Username == member.Username).FirstOrDefault();
+            if (IsVerified ==null)
+            {
+                ViewBag.AccountMessage = "Tài khoản hoặc mật khẩu sai";
+                return View();
+            }
             member.Password = Mahoa(member.Password);
             if ((db.Members.Count(e => e.Username == member.Username && e.Password == member.Password) > 0))
             {
@@ -131,7 +141,7 @@ namespace ManagerProject.Controllers
                 Session["money"] = db.Members.Where(e => e.Username == member.Username).FirstOrDefault().Money;
                 return RedirectToAction("Index");
             }
-            else if (IsVerified == false )
+            else if (IsVerified.status == false)
             {
                 ViewBag.AccountMessage = "Tài khoản chưa được kích hoạt";
             }
@@ -174,7 +184,7 @@ namespace ManagerProject.Controllers
             return View(menber);
         }
         [HttpPost]
-        public ActionResult ChangePasswrod(string password, string email, int id)
+        public ActionResult ChangePasswrod(string password, string email)
         {
             try
             {
@@ -268,7 +278,7 @@ namespace ManagerProject.Controllers
             {
                 htmlMail = reader.ReadToEnd();
                 htmlMail = htmlMail.Replace("{name}", name);
-                htmlMail = htmlMail.Replace("{link", Url.Action("VerifiedMail", "Home",new {id}, "http"));
+                htmlMail = htmlMail.Replace("{link", Url.Action("VerifiedMail", "Home",new {id}, "https"));
             }
             try
             {
@@ -295,6 +305,10 @@ namespace ManagerProject.Controllers
         public ActionResult VerifiedMail(int id )
         {
             Member member = db.Members.Find(id);
+            if (member.status == true)
+            {
+                return RedirectToAction("Index");
+            }
             member.status = true;
             db.Entry(member).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();

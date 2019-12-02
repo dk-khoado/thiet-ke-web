@@ -300,6 +300,7 @@
     <Content Include="Views\Home\ChangePasswrod.cshtml" />
     <Content Include="Views\Home\ActiveEmail.cshtml" />
     <Content Include="Views\Home\VerifiedMail.cshtml" />
+    <Content Include="Views\Home\Message.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

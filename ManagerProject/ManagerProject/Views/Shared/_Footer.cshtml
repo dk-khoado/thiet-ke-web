@@ -1,4 +1,20 @@
 ﻿<foote>
 
-    <p>&copy; @DateTime.Now.Year - 9586 Production</p>    
+    <p>&copy; @DateTime.Now.Year - 9586 Production</p>
+    <p>Danh sách tỉ giá tiền tệ theo(USD)</p>
+    <ul class="list-group" id="list">
+    </ul>
+    <script>
+    fetch("https://api.exchangeratesapi.io/latest?base=USD")
+        .then(function (data) {
+            data.json().then(function (json) {
+                $.each(json.rates, function (index, values) {
+                    $("#list").append("<li class='list-group-item'>" + index + " : " + values + "</li>");
+                });
+            });
+        }).catch(function (error) {
+
+        });
+    </script>
 </foote>
+
